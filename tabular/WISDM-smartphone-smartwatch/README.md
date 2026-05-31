@@ -1,71 +1,44 @@
-# WISDM – Smartphone and Smartwatch Activity and Biometrics Dataset
+# WISDM — Smartphone and Smartwatch Activity and Biometrics Dataset
 
-## Summary
-Large time-series dataset from 51 subjects performing 18 activities for 3 minutes each,
-recorded simultaneously from a smartphone AND a smartwatch using both accelerometer and gyroscope.
-Unique because it enables device comparison (phone vs. watch) and supports behavioral biometric identification
-in addition to activity recognition.
+Simultaneous accelerometer and gyroscope recordings from a smartphone and smartwatch. 51 subjects, 18 activities × 3 minutes each at 20 Hz. Supports both activity recognition and subject identification (behavioral biometrics).
 
-## Details
-- **Type:** Multivariate Time-Series
-- **Format:** CSV-style TXT, 4 directories (phone/watch × accel/gyro)
-- **Size:** 295.9 MB (download)
-- **Instances:** 15,630,426 raw sensor readings
-- **Features:** 6 per entry (subject-id, activity-code, timestamp, x, y, z)
-- **Subjects:** 51 (IDs: 1600–1650)
-- **Sampling Rate:** 20 Hz
-- **Window Size:** 10-second windows also provided as pre-segmented examples
-- **Missing Values:** No
-- **License:** CC BY 4.0
+**UCI ID:** 507 · **DOI:** [10.24432/C5HK59](https://doi.org/10.24432/C5HK59)  
+**Authors:** Weiss (2019)
 
-## Source
-- UCI ML Repository: https://archive.ics.uci.edu/dataset/507/wisdm+smartphone+and+smartwatch+activity+and+biometrics+dataset
-- DOI: https://doi.org/10.24432/C5HK59
-- Authors: Weiss, G. (2019)
+---
 
-## Data Structure
-4 directories, each with 51 files (one per subject):
+## Specs
 
-| Directory | Device | Sensor |
-|-----------|--------|--------|
-| phone/accel/ | Smartphone | Accelerometer |
-| phone/gyro/ | Smartphone | Gyroscope |
-| watch/accel/ | Smartwatch | Accelerometer |
-| watch/gyro/ | Smartwatch | Gyroscope |
+| Property | Value |
+|----------|-------|
+| Instances | 15,630,426 raw readings |
+| Features | 6 per entry |
+| Sampling rate | 20 Hz |
+| Subjects | 51 (IDs 1600–1650) |
+| Missing values | None |
+| Format | CSV-style TXT, 51 files per directory |
 
-## Columns (per entry)
-| Column | Type | Description |
-|--------|------|-------------|
-| subject-id | int | Subject identifier (1600–1650) |
-| activity-code | char | Activity label ('A'–'S', no 'N') |
-| timestamp | int | Unix timestamp |
-| x | float | Sensor reading — X axis |
-| y | float | Sensor reading — Y axis |
-| z | float | Sensor reading — Z axis |
+## Data Directories
+```
+phone/accel/   — smartphone accelerometer
+phone/gyro/    — smartphone gyroscope
+watch/accel/   — smartwatch accelerometer
+watch/gyro/    — smartwatch gyroscope
+```
 
-## Activity Codes
-See `activity_key.txt` in the dataset. 18 total activities labeled A–S (no N).
-Examples include: walking, jogging, stairs, sitting, standing, typing, eating, brushing teeth, etc.
+## Schema
+```
+subject-id    — int, 1600–1650
+activity-code — char, A–S (no N), see activity_key.txt
+timestamp     — Unix time (int)
+x, y, z       — sensor readings (float)
+```
 
-## Use Cases
-- Human Activity Recognition (HAR) — phone vs. watch comparison
-- Behavioral biometric identification (each reading linked to a specific subject)
-- Cross-device and cross-sensor generalization
-- Deep learning on raw time-series (CNN, LSTM, Transformer)
-- 10-second windowed feature extraction benchmarking
+Pre-segmented 10-second window examples are also provided alongside raw data.
 
-## Notes
-- Each activity performed for exactly 3 minutes per subject → consistent per-class duration
-- The dataset can be used for **both** activity recognition AND **user identification** (biometrics)
-- Pre-segmented 10-second window examples are provided alongside raw data
-- Detailed description available in `WISDM-dataset-description.pdf` included in the download
-
-## Load with Python (ucimlrepo)
+## Load
 ```python
-pip install ucimlrepo
-
 from ucimlrepo import fetch_ucirepo
-dataset = fetch_ucirepo(id=507)
-X = dataset.data.features
-y = dataset.data.targets
+ds = fetch_ucirepo(id=507)
+X, y = ds.data.features, ds.data.targets
 ```
