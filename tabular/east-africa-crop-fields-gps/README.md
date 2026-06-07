@@ -1,4 +1,4 @@
-# East Africa Crop Fields — GPS Coordinates (Error-Corrected)
+## East Africa Crop Fields — GPS Coordinates (Error-Corrected)
 
 GPS coordinates of 18,482 crop fields across Kenya, Tanzania, and Rwanda, collected 2016–2017. Original field locations were offset due to sensor inaccuracies; this dataset provides error-corrected centers produced by the winning solution of a Zindi competition using Planet satellite imagery and YOLOv5 object detection.
 
