@@ -14,6 +14,7 @@ Curated collection of datasets for research and experimentation, organized by mo
 | [Paddy](tabular/paddy/) | Tabular | Agriculture / Yield Prediction | — | 2,790 | 16.2 KB |
 | [Wilt](tabular/wilt/) | Tabular | Remote Sensing / Disease Detection | — | 4,889 | 115.8 KB |
 | [East Africa Crop Fields](tabular/east-africa-crop-fields-gps/) | Tabular / Geospatial | Crop Field Localization — East Africa | 18,482 | — |
+| [Eyes on the Ground](mixed/eyes-on-the-ground/) | Images + Tabular | Crop Field Imagery — Kenya | — | 2.54 GB |
 
 ## Structure
 ```
